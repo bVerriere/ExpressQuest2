@@ -20,6 +20,9 @@ app.get("/api/users/:id", user.getUsersById);
 app.post("/api/movies", movieHandlers.postMovie);
 app.post("/api/users", user.postUser);
 
+app.put("/api/movies/:id", movieHandlers.updateMovie);
+app.put("/api/users/:id", user.updateUser);
+
 app.listen(port, (err) => {
   if (err) {
     console.error("Something bad happened");
