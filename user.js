@@ -63,6 +63,31 @@ const getUsers = async (req, res) => {
         res.status(500).send("Error editing the user");
       });
   };
+
+  const validateUser = (req, res, next) => {
+    const { email } = req.body;
+    const errors = [];
+  
+    if (email == null) {
+      errors.push({ field: "email", message: "This field is required" });
+    } else if (title.length >= 255) {
+      errors.push({ field: "email", message: "Should contain less than 255 characters" });
+    }
+  
+    const emailRegex = /[a-z0-9._]+@[a-z0-9-]+\.[a-z]{2,3}/;
+  
+    if (!emailRegex.test(email)) {
+      errors.push({ field: 'email', message: 'Invalid email' });
+    }
+  
+    // ...
+  
+    if (errors.length) {
+      res.status(422).json({ validationErrors: errors });
+    } else {
+      next();
+    }
+  };
   
 
-  module.exports = {getUsers, getUsersById, postUser, updateUser};
+  module.exports = {getUsers, getUsersById, postUser, updateUser, validateUser};
