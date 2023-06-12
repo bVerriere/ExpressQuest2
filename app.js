@@ -4,15 +4,13 @@ require("dotenv").config();
 const port = process.env.APP_PORT ?? 5001;
 
 const movieHandlers = require("./movieHandlers");
-const validateMovie = require("./validateMovie");
-const validateUser = require("./validateUser");
 const user = require("./user");
 
 const welcome = (req, res) => {
   res.send("Welcome to my favourite movie list");
 };
 
-const { validateMovie } = require("./validators.js");
+const { validateMovie, validateUser } = require("./validators.js");
 
 app.use(express.json());
 app.get("/", welcome);
