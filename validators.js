@@ -28,6 +28,7 @@ const userSchema = Joi.object({
   lastname: Joi.string().max(255).required(),
   city: Joi.string().max(255),
   language: Joi.string().max(255),
+  password: Joi.string().max(500)
 });
 
 const validateUser = (req, res, next) => {
